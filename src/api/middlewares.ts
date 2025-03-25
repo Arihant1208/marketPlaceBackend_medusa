@@ -21,5 +21,9 @@ export default defineMiddlewares({
       matcher: "/vendors/*",
       middlewares: [authenticate("vendor", ["session", "bearer"])],
     },
+    {
+      matcher: "/admin/*",
+      middlewares: [authenticate(["vendor", "user"], ["session", "bearer"])],
+    },
   ],
 });
