@@ -40,6 +40,24 @@ export const POST = async (
 
   const vendorData = req.validatedBody;
 
+  const query = req.scope.resolve("query");
+
+  const {
+    data: [res1],
+  } = await query.graph({
+    entity: "vendor_admin",
+    fields: ["*"],
+    filters: {
+      email: [vendorData.admin.email],
+    },
+  });
+
+  if (!res1) {
+    return res.status(500).json({
+      message: "Vendor already exist",
+    });
+  }
+
   // create vendor admin
   const { result } = await createVendorWorkflow(req.scope).run({
     input: {
