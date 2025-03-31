@@ -7,6 +7,7 @@ import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
 import MarketplaceModuleService from "../../../modules/marketplace/service";
 import { MARKETPLACE_MODULE } from "../../../modules/marketplace";
 import { Modules } from "@medusajs/framework/utils";
+import { createPriceSetsStep } from "@medusajs/medusa/core-flows";
 
 type WorkflowInput = {
   vendor_email: string;
@@ -45,6 +46,16 @@ const inviteVendorWorkflow = createWorkflow(
   function (input: WorkflowInput) {
     const str1 = step1(input);
     const str2 = step2(input);
+
+    const data = createPriceSetsStep([{
+      prices: [
+        {
+          amount: 103232,
+          currency_code: "usd",
+        }
+      ]
+    }])
+
     return new WorkflowResponse({
       message: "email sent successfully",
       data: str1,
