@@ -36,7 +36,11 @@ const step2 = createStep(
     const data = await notificationModuleService.createNotifications({
       to: vendor_email,
       channel: "email",
-      template: "d-5fe2903a9d2d47dab88d2390baf6580c",
+      template: "d-775315cefc7e408bae449fb02cdfff1c",
+      data:{
+        username:vendor_email,
+        signup:`https://localhost:3000/signup-vendor/?email=${vendor_email}`
+      }
     });
   }
 );
