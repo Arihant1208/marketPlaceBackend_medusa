@@ -7,6 +7,12 @@ type CreateVendorAdminStepInput = {
   first_name?: string;
   last_name?: string;
   vendor_id: string;
+  store_name?: string;
+  description?: string;
+  tax_number?: string;
+  warehouse_locations?: any;
+  location?: string;
+  metadata?: any;
 };
 
 const createVendorAdminStep = createStep(

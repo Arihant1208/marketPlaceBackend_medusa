@@ -18,6 +18,12 @@ export const PostVendorCreateSchema = z
         email: z.string(),
         first_name: z.string().optional(),
         last_name: z.string().optional(),
+        store_name: z.string(),
+        description: z.string().optional(),
+        tax_number: z.string().optional(),
+        warehouse_locations: z.any(),
+        location: z.string().optional(),
+        metadata: z.any()
       })
       .strict(),
   })
@@ -29,8 +35,6 @@ export const POST = async (
   req: AuthenticatedMedusaRequest<RequestBody>,
   res: MedusaResponse
 ) => {
-  // If `actor_id` is present, the request carries
-  // authentication for an existing vendor admin
   if (req.auth_context?.actor_id) {
     throw new MedusaError(
       MedusaError.Types.INVALID_DATA,
@@ -42,21 +46,22 @@ export const POST = async (
 
   const query = req.scope.resolve("query");
 
-  const {
-    data: [res1],
-  } = await query.graph({
-    entity: "vendor_admin",
-    fields: ["*"],
-    filters: {
-      email: [vendorData.admin.email],
-    },
-  });
+  // const {
+  //   data: [res1],
+  // } = await query.graph({
+  //   entity: "vendor_admin",
+  //   fields: ["*"],
+  //   filters: {
+  //     email: [vendorData.admin.email],
+  //   },
+  // });
+  // console.log(res1)
 
-  if (!res1) {
-    return res.status(500).json({
-      message: "Vendor already exist",
-    });
-  }
+  // if (!res1) {
+  //   return res.status(500).json({
+  //     message: "Vendor already exist",
+  //   });
+  // }
 
   // create vendor admin
   const { result } = await createVendorWorkflow(req.scope).run({

@@ -18,6 +18,12 @@ export type CreateVendorWorkflowInput = {
     email: string;
     first_name?: string;
     last_name?: string;
+    store_name: string;
+    description: string;
+    tax_number: string;
+    warehouse_locations?: string;
+    location: string;
+    metadata?: any;
   };
   authIdentityId: string;
 };
