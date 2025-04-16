@@ -55,7 +55,7 @@ const createVendorWorkflow = createWorkflow(
     setAuthAppMetadataStep({
       authIdentityId: input.authIdentityId,
       actorType: "vendor",
-      value: vendorAdmin.id,
+      value: vendor.id,
     });
 
     const { data: vendorWithAdmin } = useQueryGraphStep({
