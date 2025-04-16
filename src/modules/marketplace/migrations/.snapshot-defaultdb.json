@@ -365,15 +365,6 @@
           "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_vendor_admin_tax_number_unique\" ON \"vendor_admin\" (tax_number) WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "IDX_vendor_admin_location_unique",
-          "columnNames": [],
-          "composite": false,
-          "constraint": false,
-          "primary": false,
-          "unique": false,
-          "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_vendor_admin_location_unique\" ON \"vendor_admin\" (location) WHERE deleted_at IS NULL"
-        },
-        {
           "keyName": "IDX_vendor_admin_vendor_id",
           "columnNames": [],
           "composite": false,

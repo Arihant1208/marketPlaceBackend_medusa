@@ -9,7 +9,7 @@ const VendorAdmin = model.define("vendor_admin", {
   store_name: model.text().unique(),
   description: model.text().nullable(),
   tax_number: model.text().unique(),
-  location:model.text().unique(),
+  location:model.text(),
   warehouse_locations: model.json().nullable(),
   metadata:model.json().nullable(),
   vendor: model.belongsTo(() => Vendor, {
